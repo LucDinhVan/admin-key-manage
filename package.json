@@ -84,13 +84,12 @@
   },
   "lingui": {
     "fallbackLocales": {
-      "default": "en"
+      "default": "vi"
     },
     "sourceLocale": "en",
     "locales": [
       "en",
-      "zh",
-      "pt-br"
+      "vi"
     ],
     "catalogs": [
       {

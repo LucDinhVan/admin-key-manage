@@ -1,6 +1,6 @@
 import { message } from 'antd'
 
-export default {
+const onError = {
   onError(e, a) {
     e.preventDefault()
     if (e.message) {
@@ -11,3 +11,5 @@ export default {
     }
   },
 }
+
+export default onError

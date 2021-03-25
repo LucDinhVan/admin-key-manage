@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'umi'
 import { Button, Row, Input, Form } from 'antd'
 import { GlobalFooter } from 'components'
-import { GithubOutlined } from '@ant-design/icons'
-import { t } from "@lingui/macro"
-import { Trans } from "@lingui/macro"
+import { FacebookFilled } from '@ant-design/icons'
+import { t } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { setLocale } from 'utils'
 import config from 'utils/config'
 
@@ -15,25 +15,24 @@ const FormItem = Form.Item
 
 @connect(({ loading, dispatch }) => ({ loading, dispatch }))
 class Login extends PureComponent {
-
   render() {
     const { dispatch, loading } = this.props
-    
-    const handleOk = values => {
+
+    const handleOk = (values) => {
       dispatch({ type: 'login/login', payload: values })
     }
     let footerLinks = [
       {
         key: 'github',
-        title: <GithubOutlined />,
-        href: 'https://github.com/zuiidea/antd-admin',
+        title: <FacebookFilled />,
+        href: 'https://www.facebook.com/VL-Coder-341825860042670',
         blankTarget: true,
       },
     ]
 
     if (config.i18n) {
       footerLinks = footerLinks.concat(
-        config.i18n.languages.map(item => ({
+        config.i18n.languages.map((item) => ({
           key: item.key,
           title: (
             <span onClick={setLocale.bind(null, item.key)}>{item.title}</span>
@@ -49,21 +48,12 @@ class Login extends PureComponent {
             <img alt="logo" src={config.logoPath} />
             <span>{config.siteName}</span>
           </div>
-          <Form
-            onFinish={handleOk}
-            >
-            <FormItem name="username" 
-              rules={[{ required: true }]} hasFeedback>
-                <Input
-                  placeholder={t`Username`}
-                />
+          <Form onFinish={handleOk}>
+            <FormItem name="username" rules={[{ required: true }]} hasFeedback>
+              <Input placeholder={t`Username`} />
             </FormItem>
-            <FormItem name="password"
-              rules={[{ required: true }]} hasFeedback>
-                <Input
-                  type="password"
-                  placeholder={t`Password`}
-                />
+            <FormItem name="password" rules={[{ required: true }]} hasFeedback>
+              <Input type="password" placeholder={t`Password`} />
             </FormItem>
             <Row>
               <Button
@@ -73,16 +63,6 @@ class Login extends PureComponent {
               >
                 <Trans>Sign in</Trans>
               </Button>
-              <p>
-                <span className="margin-right">
-                  <Trans>Username</Trans>
-                  ：guest
-                </span>
-                <span>
-                  <Trans>Password</Trans>
-                  ：guest
-                </span>
-              </p>
             </Row>
           </Form>
         </div>

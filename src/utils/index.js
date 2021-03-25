@@ -1,9 +1,9 @@
 import { cloneDeep } from 'lodash'
-const { pathToRegexp } = require("path-to-regexp")
 import moment from 'moment'
-import 'moment/locale/zh-cn'
+import 'moment/locale/vi'
 import store from 'store'
 import { i18n } from './config'
+const { pathToRegexp } = require("path-to-regexp")
 
 export classnames from 'classnames'
 export config from './config'
@@ -18,7 +18,7 @@ export const defaultLanguage = i18n ? i18n.defaultLanguage : ''
  * @param   {array}         array   An array where all values are objects, like [{key:1},{key:2}].
  * @param   {string}        key     The key of the object that needs to be queried.
  * @param   {string}        value   The value of the object that needs to be queried.
- * @return  {object|undefined}   Return frist object when query success.
+ * @return  {object|undefined}   Return first object when query success.
  */
 export function queryArray(array, key, value) {
   if (!Array.isArray(array)) {
@@ -117,7 +117,7 @@ export function queryAncestors(array, current, parentId, id = 'id') {
  * Query which layout should be used for the current path based on the configuration.
  * @param   {layouts}     layouts   Layout configuration.
  * @param   {pathname}    pathname  Path name to be queried.
- * @return  {string}   Return frist object when query success.
+ * @return  {string}   Return first object when query success.
  */
 export function queryLayout(layouts, pathname) {
   let result = 'public'
@@ -165,7 +165,7 @@ export function getLocale() {
 
 export function setLocale(language) {
   if (getLocale() !== language) {
-    moment.locale(language === 'zh' ? 'zh-cn' : language)
+    moment.locale(language === 'vi' ? 'vi' : language)
     store.set('locale', language)
     window.location.reload()
   }
