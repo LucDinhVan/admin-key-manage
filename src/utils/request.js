@@ -2,7 +2,7 @@ import axios from 'axios'
 import { cloneDeep } from 'lodash'
 import { message } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
-const { parse, compile } = require("path-to-regexp")
+const { parse, compile } = require('path-to-regexp')
 
 const { CancelToken } = axios
 window.cancelRequest = new Map()
@@ -33,15 +33,19 @@ export default function request(options) {
   }
 
   options.url = url
-  options.cancelToken = new CancelToken(cancel => {
+  options.cancelToken = new CancelToken((cancel) => {
     window.cancelRequest.set(Symbol(Date.now()), {
       pathname: window.location.pathname,
       cancel,
     })
   })
 
+  axios.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${window.localStorage.getItem('token')}`
+
   return axios(options)
-    .then(response => {
+    .then((response) => {
       const { statusText, status, data } = response
 
       let result = {}
@@ -61,7 +65,7 @@ export default function request(options) {
         ...result,
       })
     })
-    .catch(error => {
+    .catch((error) => {
       const { response, message } = error
 
       if (String(message) === CANCEL_REQUEST_MESSAGE) {

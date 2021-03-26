@@ -107,7 +107,7 @@ module.exports = {
           httpOnly: true,
         }
       )
-      res.json({ success: true, message: 'Ok' })
+      res.json({ success: true, message: 'Ok', accessToken: 'asdfajsdfklaiodfkfjdjfsojlucdeptrai' })
     } else {
       res.status(400).end()
     }
